@@ -33,8 +33,13 @@
                 <input type="hidden" name="discountMultiplier" value="<?php echo $discountMultiplier; ?>">
                 <input type="hidden" name="vehicleChoice" value="<?php echo $vehicle; ?>">
                 <input type="hidden" name="licensePlate" value="<?php echo $licensePlate; ?>">
+                <button type="submit" class="btn btn-default">Review Order</button>
+            @else
+                <input type="hidden" name="discountMultiplier" value="<?php echo $discountMultiplier; ?>">
+                <input type="hidden" name="vehicleChoice" value="<?php echo $vehicle; ?>">
+                <input type="hidden" name="licensePlate" value="<?php echo $licensePlate; ?>">
+                <button type="submit" class="btn btn-default">Review Order</button>
             @endif
-            <button type="submit" class="btn btn-default">Next Step: Review Order</button>
         </form>
     @else
         @if($discountMultiplier == 0.5)

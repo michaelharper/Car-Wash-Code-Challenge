@@ -17,7 +17,7 @@
         <div class="form-group">
             {{ csrf_field() }}
             <label for="licensePlate">License Plate</label>
-            <input type="text" class="form-control" id="licensePlate" name="licensePlate" placeholder="e.g. ABC1234">
+            <input type="text" maxlength="10" class="form-control" id="licensePlate" name="licensePlate" placeholder="e.g. ABC1234">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>

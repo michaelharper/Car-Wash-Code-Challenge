@@ -60,7 +60,6 @@ class LicensePlateController extends Controller {
         if ($previousCompletedVisits = '1')
         {
             echo "You've earned a discount!";
-            //$2ndVisit = true;
             die();
 
         }
