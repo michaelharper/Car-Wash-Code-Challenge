@@ -12,7 +12,8 @@
 
 @section('content')
     <h1>Car Wash App: Returning Customer</h1>
-    <p>Welcome back valued customer!<br>Previous Car Washes: <?= $previousCompletedVisits; ?><br>Vehicle: <?= $vehicle; ?><br>License Plate: <?= $licensePlate; ?>    </p>
+    <p>Welcome back valued customer!<br>Previous Car Washes: <?= $previousCompletedVisits; ?>
+        <br>Vehicle: <?= $vehicle; ?><br>License Plate: <?= $licensePlate; ?>    </p>
 
     @if($vehicle == "Truck")
         <?php $price = 10; ?>

@@ -2,7 +2,8 @@
 
 use App\Visit;
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
     return view('child'); // Welcome page; Starts with license plate entry, initially left without controller here
 });
 

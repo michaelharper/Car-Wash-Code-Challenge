@@ -23,7 +23,7 @@
             </select>
             {{ csrf_field() }}
             <div id="truckOptions" style="visibility:hidden;">
-                <div class="checkbox" ><label> <input type="checkbox" id="bedUp" name="bedUp"> My bed is secured
+                <div class="checkbox"><label> <input type="checkbox" id="bedUp" name="bedUp"> My bed is secured
                         and in the upright position. <strong>(Due to liability reasons, we cannot wash your truck if
                             your bed is down.)</strong></label></div>
                 <div class="checkbox"><label> <input type="checkbox" id="cleanBed" name="cleanBed"> There is no
