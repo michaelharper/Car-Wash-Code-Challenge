@@ -1,16 +1,20 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Visit;
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
     return view('welcome');
 });
+
+Route::get('/cars', 'CarsController@index'); // Starts user down car path
+
+Route::get('/trucks', 'TrucksController@index'); // Starts user down truck path
+
+Route::get('/visits', 'VisitsController@index'); // Returns all visits
+
+Route::get('/visits/unpaid', 'VisitsController@unpaid'); // Returns incomplete, unpaid visits
+
+Route::get('/visits/paid', 'VisitsController@paid'); // Returns completed, paid visits
+
+Route::get('/visits/{visit}', 'VisitsController@show'); // Returns individual visit
