@@ -9,16 +9,12 @@ use DB;
 
 class LicensePlateController extends Controller {
 
-    public function index()
-    {
-        // return view('start');
-    }
-
     public function lookup()
     {
         $licensePlate = \request('licensePlate');
-        //$previousCompletedVisits = DB::table('visits')->where('license_plate', $licensePlate)->where('paid', '1')->count();
+        //$previousCompletedVisits = DB::table('visits')->where('paid', '1')->where('license_plate', $licensePlate)->count();
         $previousCompletedVisits = Visit::paid()->where('license_plate', $licensePlate)->count();
+        //dd($previousCompletedVisits);
 
         if ($licensePlate == "1111111")
         {
@@ -27,30 +23,33 @@ class LicensePlateController extends Controller {
         } elseif ($previousCompletedVisits > 0)
         {
 
-            // $vehicle = DB::table('visits')->where('license_plate', $licensePlate)->pluck('vehicle');
+            $vehicle = DB::table('visits')->where('license_plate', $licensePlate)->pluck('vehicle')->first();
 
-            if ($previousCompletedVisits = '1')
+            if ($previousCompletedVisits == 1)
             {
 
-                dd($previousCompletedVisits);
                 $discountMultiplier = 0.5;
 
                 return view('returning-customer', [
                     'previousCompletedVisits' => $previousCompletedVisits,
                     'discountMultiplier'      => $discountMultiplier,
-                    'vehicle'                 => $vehicle
+                    'vehicle'                 => $vehicle,
+                    'licensePlate'            => $licensePlate
                 ]);
             }
 
             return view('returning-customer', [
                 'previousCompletedVisits' => $previousCompletedVisits,
                 'discountMultiplier'      => 1.0,
-                'vehicle'                 => $vehicle
+                'vehicle'                 => $vehicle,
+                'licensePlate'            => $licensePlate
             ]);
         } else
         {
             // new customer
-            return view('new-customer');
+            return view('new-customer', [
+                'licensePlate' => $licensePlate
+            ]);
         }
 
     }

@@ -3,16 +3,14 @@
 use App\Visit;
 
 Route::get('/', function () {
-    return view('child'); // Welcome page; Starts with license plate entry
+    return view('child'); // Welcome page; Starts with license plate entry, initially left without controller here
 });
 
-// Route::get('/start', 'LicensePlateController@index'); // Starts with license plate entry
+Route::post('/lookup', 'LicensePlateController@lookup'); // License plate lookup; Example of Query Building
 
-Route::post('/lookup', 'LicensePlateController@lookup'); // Does license plate lookup; Example of Query Building
+Route::post('/review', 'OrdersController@review'); // Allows user to review car wash order total before submitting
 
-Route::get('/cars', 'CarsController@index'); // Sends user down car path
-
-Route::get('/trucks', 'TrucksController@index'); // Sends user down truck path
+Route::post('/submit', 'OrdersController@submit'); // Allows user to submit car wash order
 
 Route::get('/visits', 'VisitsController@index'); // Returns all visits; Example of Eloquent Active Record
 

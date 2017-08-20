@@ -12,19 +12,37 @@
 
 @section('content')
     <h1>Car Wash App: Returning Customer</h1>
-    <p>Welcome back valued customer!<br>Previous Car Washes: <?= $previousCompletedVisits; ?>    </p>
-    <p>Discount Multiplier: <?= $discountMultiplier; ?>    </p>
+    <p>Welcome back valued customer!<br>Previous Car Washes: <?= $previousCompletedVisits; ?><br>Vehicle: <?= $vehicle; ?><br>License Plate: <?= $licensePlate; ?>    </p>
 
-    @if($discountMultiplier == 0.5)
-        <p>SECOND CAR WASH!!! You get 50% off your car wash today!</p>
+    @if($vehicle == "Truck")
+        <?php $price = 10; ?>
+        <p>Truck wash price: $<?= $price; ?></p>
+        <form action="/review" method="POST">
+            <div class="form-group">
+                {{ csrf_field() }}
+                <div class="checkbox"><label> <input type="checkbox" id="bedUp" name="bedUp"> My bed is secured
+                        and in the upright position. <strong>(Due to liability reasons, we cannot wash your truck if
+                            your bed is down.)</strong></label></div>
+                <div class="checkbox"><label> <input type="checkbox" id="cleanBed" name="cleanBed"> There is no
+                        mud in my bed. <strong>(There is an extra $2 fee if you have mud in your bed).</strong></label>
+                </div>
+            </div>
+            @if($discountMultiplier == 0.5)
+                <p><strong>SECOND VISIT!!! You get 50% off your car wash today!</strong></p>
+                <input type="hidden" name="discountMultiplier" value="<?php echo $discountMultiplier; ?>">
+                <input type="hidden" name="vehicleChoice" value="<?php echo $vehicle; ?>">
+                <input type="hidden" name="licensePlate" value="<?php echo $licensePlate; ?>">
+            @endif
+            <button type="submit" class="btn btn-default">Next Step: Review Order</button>
+        </form>
+    @else
+        @if($discountMultiplier == 0.5)
+            <p><strong>SECOND VISIT!!! You get 50% off your car wash today!</strong></p>
+            <input type="hidden" name="discountMultiplier" value="<?php echo $discountMultiplier; ?>">
+            <input type="hidden" name="vehicleChoice" value="<?php echo $vehicle; ?>">
+            <input type="hidden" name="licensePlate" value="<?php echo $licensePlate; ?>">
+        @endif
+        <button type="submit" class="btn btn-default">Review Order</button>
     @endif
 
-    <form action="/lookup" method="POST">
-        <div class="form-group">
-            {{ csrf_field() }}
-            <label for="licensePlate">License Plate</label>
-            <input type="text" class="form-control" id="licensePlate" name="licensePlate" placeholder="e.g. ABC1234">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
 @endsection

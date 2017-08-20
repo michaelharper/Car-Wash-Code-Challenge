@@ -12,13 +12,27 @@
 
 @section('content')
     <h1>Car Wash App: New Customer!</h1>
-    <p>Greetings new customer!<br> Please select car or truck below:</p>
-    <form action="/lookup" method="POST">
+    <p>Greetings new customer!<br></p>
+    <form action="/review" method="POST">
         <div class="form-group">
+            <label for="vehicleChoice">Please select car or truck below:</label>
+            <select class="form-control" name="vehicleChoice" id="vehicleChoice"
+                    onchange="if (this.value=='Truck'){document.getElementById('truckOptions').style.visibility='visible'}else{document.getElementById('truckOptions').style.visibility='hidden'};">
+                <option>Car</option>
+                <option>Truck</option>
+            </select>
             {{ csrf_field() }}
-            <label for="licensePlate">License Plate</label>
-            <input type="text" class="form-control" id="licensePlate" name="licensePlate" placeholder="e.g. ABC1234">
+            <div id="truckOptions" style="visibility:hidden;">
+                <div class="checkbox" ><label> <input type="checkbox" id="bedUp" name="bedUp"> My bed is secured
+                        and in the upright position. <strong>(Due to liability reasons, we cannot wash your truck if
+                            your bed is down.)</strong></label></div>
+                <div class="checkbox"><label> <input type="checkbox" id="cleanBed" name="cleanBed"> There is no
+                        mud in my bed. <strong>(There is an extra $2 fee if you have mud in your bed).</strong></label>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <input type="hidden" name="discountMultiplier" value="1">
+        <input type="hidden" name="licensePlate" value="<?php echo $licensePlate; ?>">
+        <button type="submit" class="btn btn-default">Review Order</button>
     </form>
 @endsection
