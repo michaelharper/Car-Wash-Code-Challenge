@@ -30,6 +30,7 @@
             </div>
             @if($discountMultiplier == 0.5)
                 <p><strong>SECOND VISIT!!! You get 50% off your car wash today!</strong></p>
+                {{ csrf_field() }}
                 <input type="hidden" name="discountMultiplier" value="<?php echo $discountMultiplier; ?>">
                 <input type="hidden" name="vehicleChoice" value="<?php echo $vehicle; ?>">
                 <input type="hidden" name="licensePlate" value="<?php echo $licensePlate; ?>">
@@ -43,12 +44,16 @@
         </form>
     @else
         @if($discountMultiplier == 0.5)
+            <form action="/review" method="POST">
             <p><strong>SECOND VISIT!!! You get 50% off your car wash today!</strong></p>
+            {{ csrf_field() }}
             <input type="hidden" name="discountMultiplier" value="<?php echo $discountMultiplier; ?>">
             <input type="hidden" name="vehicleChoice" value="<?php echo $vehicle; ?>">
             <input type="hidden" name="licensePlate" value="<?php echo $licensePlate; ?>">
+            <button type="submit" class="btn btn-default">Review Order</button>
+            </form>
         @endif
-        <button type="submit" class="btn btn-default">Review Order</button>
+
     @endif
 
 @endsection
