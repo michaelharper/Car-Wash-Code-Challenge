@@ -19,7 +19,7 @@ Build a simple Laravel CRUD that enforces and demonstrates the above rules.
 ## Application Installation Steps
 
 1. Clone develop branch of my github repo: git clone https://github.com/michaelharper/CarWash/tree/develop
-2. cd into CarWash, composer install
+2. cd into Car-Wash-Code-Challenge, composer install
 3. Create carwash DB or change .env to reflect your local testing environment’s DB. If you don’t have a .env, create one from .env.sample which should be in the project root.
 4. php artisan migrate should create the only table you’ll need for this which is visits - a way for me to log when customers visit the car wash.
 5. OPTIONAL: You may have see an AES key error on your frontend depending on a few factors. If so, please run php artisan key:generate which should update your .env file. After that, I would recommend running php artisan config:clear and finally php artisan config:cache to ensure it flushes cache and updates config.
